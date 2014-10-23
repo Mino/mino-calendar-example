@@ -2,8 +2,6 @@ var express = require('express');
 var MinoDB = require('minodb');
 var MinoVal = require('minoval');
 var mino = new MinoDB({
-	api: true,
-    ui: true,
     db_address: process.env.MONGOLAB_URI || 'mongodb://127.0.0.1:27017/minodb'
 })
 express()
