@@ -1,18 +1,15 @@
-<html>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript" src="/bower_components/moment/moment.js"></script>
 <script type="text/javascript" src="/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/bower_components/fullcalendar/dist/fullcalendar.min.css">
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#calendar').fullCalendar({
+		$('<div/>').appendTo("body").fullCalendar({
 		    events: function(start, end, timezone, callback) {
 				$.get("/get_events", function(data) {
-					events = [];
+					var events = [];
 					for (var i=0; i<data.objects.length; i++) {
-						var object = data.objects[i].event;
-						object.allDay = object.all_day;
-						events.push(object);
+						events.push(data.objects[i].event);
 					}
 					callback(events)
 				})
@@ -20,7 +17,3 @@
 		});
 	});
 </script>
-<body>
-	<div id="calendar"></div>
-</body>
-</html>
