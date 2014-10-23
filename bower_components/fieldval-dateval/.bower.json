@@ -1,0 +1,29 @@
+{
+  "name": "fieldval-dateval",
+  "version": "0.1.1",
+  "main": "fieldval-dateval.js",
+  "ignore": [
+    "coverage",
+    "docs",
+    "docs_src",
+    "examples",
+    "node_modules",
+    "src",
+    "gulpfile.js",
+    ".gitignore",
+    "test",
+    ".travis.yml",
+    "link.sh",
+    ".gitignore"
+  ],
+  "homepage": "https://github.com/FieldVal/fieldval-dateval-js",
+  "_release": "0.1.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.1",
+    "commit": "4350fb63684ad03f0243dcc041512d3e1b893629"
+  },
+  "_source": "git://github.com/FieldVal/fieldval-dateval-js.git",
+  "_target": "0.1.1",
+  "_originalSource": "fieldval-dateval"
+}

@@ -1,0 +1,19 @@
+{
+	"name": "fieldval-basicval",
+	"version": "0.1.3",
+	"main": "fieldval-basicval.js",
+	"ignore": [
+		"coverage",
+		"docs",
+		"docs_src",
+		"examples",
+		"node_modules",
+		"src",
+		"gulpfile.js",
+		".gitignore",
+		"test",
+		".travis.yml",
+		"link.sh",
+		".gitignore"
+	]
+}
