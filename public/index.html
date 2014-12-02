@@ -8,7 +8,7 @@
 	<script type="text/javascript" src="/fieldval-rules/fieldval-rules.js"></script>
 	<script type="text/javascript" src="/fieldval-ui/fieldval-ui.js"></script>
 	<script type="text/javascript" src="/fieldval-ui/themes/minimal.js"></script>
-	<script type="text/javascript" src="/minoval/public/minoval.js"></script>
+	<script type="text/javascript" src="/mino/minoval/minoval.js"></script>
 	<script type="text/javascript" src="/moment/moment.js"></script>
 	<script type="text/javascript" src="/fullcalendar/dist/fullcalendar.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="/fullcalendar/dist/fullcalendar.min.css">
@@ -80,7 +80,6 @@
 
 		$(document).ready(function() {
 			initCalendar();
-			var minoval = new MinoVal("/minoval/");
 			minoval.get_rule("event", function(err, vr) {
 				validation_rule = vr;
 

@@ -26,10 +26,9 @@ server.use(express.static(path.join(__dirname, 'bower_components')));
 server.use('/mino/', mino.server())
 
 var MinoVal = require('minoval');
-var minoval = new MinoVal(mino);
 
-server.use('/minoval/example/', minoval.example_server());
-server.use('/minoval/', minoval.endpoint_server());
+var minoval = new MinoVal({user: "testuser"})
+mino.add_plugin(minoval);
 
 server.post("/create_event", function(req, res) {
 	minoval.validate("event", req.body, function(validator) {
@@ -39,13 +38,13 @@ server.post("/create_event", function(req, res) {
 			return;
 		}
 
-		mino.api.call({username:"TestUser"},{
+		mino.api.call({username:"testuser"},{
 		    "function": "save",
 		    parameters: {
 		        objects: [
 		            {
                         name: req.body.event.title,
-                        path: "/TestUser/events/",
+                        path: "/testuser/events/",
                         event: req.body.event
                     }
 		        ]
@@ -60,11 +59,11 @@ server.post("/create_event", function(req, res) {
 
 
 server.get("/get_events", function(req, res) {
-	mino.api.call({username:"TestUser"},{
+	mino.api.call({username:"testuser"},{
 	    "function": "search",
 	    parameters: {
 	        paths: [
-	            "/TestUser/events/"  
+	            "/testuser/events/"  
 	        ]
 	    }
 	}, function(req, response) {
