@@ -1,78 +1,54 @@
 var logger = require('tracer').console();
 var express = require('express');
-var connect = require('connect');
-var http = require('http');
-var path = require('path');
-var bodyParser = require('body-parser');
-var errorHandler = require('errorhandler');
 
-var MinoDB = require('minodb');
-var db_address = process.env.MONGOLAB_URI || 'mongodb://127.0.0.1:27017/minodb';
-var mino = new MinoDB({
-    api: true,
-    ui: true,
-    db_address: db_address
-})
+require('./mino_setup')(function(mino,minoval){
+	express()
+	.use(require('errorhandler')())
+	.use(require('body-parser')())
+	.use(express.static('./public'))
+	.use('/mino/', mino.server())
+	.post("/create_event", function(req, res) {
+	
+		minoval.validate("event", req.body, function(validator) {
+			var error = validator.end();
+			if (error) {
+				res.json(error);
+				return;
+			}
 
-var server = express();
-server.set('port', process.env.PORT || 5002);
-server.set('views', path.join(__dirname, 'views'));
-server.set('view engine', 'jade')
-server.use(errorHandler());
-server.use(bodyParser());
-server.use(express.static(path.join(__dirname, 'public')));
-server.use(express.static(path.join(__dirname, 'bower_components')));
+			mino.api.call({username:"my_app"},{
+			    "function": "save",
+			    parameters: {
+			        objects: [
+			            {
+	                        name: req.body.title,
+	                        path: "/my_app/events/",
+	                        event: req.body
+	                    }
+			        ]
+			    }
+			},function(err,response){
+			    logger.log(err, response);
+			    res.json(response);
+			})
 
-server.use('/mino/', mino.server())
+		});
 
-var MinoVal = require('minoval');
-
-var minoval = new MinoVal({user: "testuser"})
-mino.add_plugin(minoval);
-
-server.post("/create_event", function(req, res) {
-	minoval.validate("event", req.body, function(validator) {
-		var error = validator.end();
-		if (error) {
-			res.json(error);
-			return;
-		}
-
-		mino.api.call({username:"testuser"},{
-		    "function": "save",
+	})
+	.get("/get_events", function(req, res) {
+		
+		mino.api.call({username:"my_app"},{
+		    "function": "search",
 		    parameters: {
-		        objects: [
-		            {
-                        name: req.body.event.title,
-                        path: "/testuser/events/",
-                        event: req.body.event
-                    }
+		        paths: [
+		            "/my_app/events/"  
 		        ]
 		    }
-		},function(err,response){
-		    logger.log(err, response);
-		    res.json(response);
-		})
+		}, function(req, response) {
+			logger.log(req, response);
+			res.json(response);
+		});
 
-	});
-})
-
-
-server.get("/get_events", function(req, res) {
-	mino.api.call({username:"testuser"},{
-	    "function": "search",
-	    parameters: {
-	        paths: [
-	            "/testuser/events/"  
-	        ]
-	    }
-	}, function(req, response) {
-		logger.log(req, response);
-		res.json(response);
-	});
-})
-
-
-http.createServer(server).listen(server.get('port'), function() {
-    console.log('Server started on port ' + server.get('port'));
+	})
+	.listen(process.env.PORT || 5002);
 });

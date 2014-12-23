@@ -3,17 +3,17 @@
 	<title>MinoVal Calendar</title>
 
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script type="text/javascript" src="/fieldval/fieldval.js"></script>
-	<script type="text/javascript" src="/fieldval-basicval/fieldval-basicval.js"></script>
-	<script type="text/javascript" src="/fieldval-rules/fieldval-rules.js"></script>
-	<script type="text/javascript" src="/fieldval-ui/fieldval-ui.js"></script>
-	<script type="text/javascript" src="/fieldval-ui/themes/minimal.js"></script>
+	<script type="text/javascript" src="/bower_components/fieldval/fieldval.js"></script>
+	<script type="text/javascript" src="/bower_components/fieldval-basicval/fieldval-basicval.js"></script>
+	<script type="text/javascript" src="/bower_components/fieldval-rules/fieldval-rules.js"></script>
+	<script type="text/javascript" src="/bower_components/fieldval-ui/fieldval-ui.js"></script>
+	<script type="text/javascript" src="/bower_components/fieldval-ui/themes/minimal.js"></script>
 	<script type="text/javascript" src="/mino/minoval/minoval.js"></script>
-	<script type="text/javascript" src="/moment/moment.js"></script>
-	<script type="text/javascript" src="/fullcalendar/dist/fullcalendar.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="/fullcalendar/dist/fullcalendar.min.css">
-	<link rel="stylesheet" type="text/css" href="/fullcalendar/dist/fullcalendar.print.css">
-	<link rel="stylesheet" type="text/css" href="/fieldval-ui/themes/minimal.css">
+	<script type="text/javascript" src="/bower_components/moment/moment.js"></script>
+	<script type="text/javascript" src="/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/bower_components/fullcalendar/dist/fullcalendar.min.css">
+	<link rel="stylesheet" type="text/css" href="/bower_components/fullcalendar/dist/fullcalendar.print.css">
+	<link rel="stylesheet" type="text/css" href="/bower_components/fieldval-ui/themes/minimal.css">
 	<link rel="stylesheet" type="text/css" href="/style.css">
 </head>	
 
@@ -34,45 +34,39 @@
 		}
 
 		function createEvent(event) {
-		    var error = validation_rule.validate(event);
-		  
-		    if(error){
-		        console.log(error);
-		        form.error(error)
-		    } else {
-		        form.clear_errors();
+			console.log(validation_rule);
+		    validation_rule.validate(event, function(error) {
+			  	console.log(error);
+			    if(error){
+			        form.error(error)
+			    } else {
+			        form.clear_errors();
 
-		        var url = '/create_event';
+			        var url = '/create_event';
 
-		        $.ajax({
-		            type: "POST",
-		            url: url,
-		            contentType: "application/json; charset=utf-8",
-		            dataType: "json",
-		            data: JSON.stringify(event),
-		            success: function(response) {
-		                console.log(response);
-						$('#calendar').fullCalendar('refetchEvents')
-		            },
-		            error: function(err, response) {
-		                console.log(err, response);
-		            }
-		        })
-		    }
+			        $.ajax({
+			            type: "POST",
+			            url: url,
+			            contentType: "application/json; charset=utf-8",
+			            dataType: "json",
+			            data: JSON.stringify(event),
+			            success: function(response) {
+			                console.log(response);
+							$('#calendar').fullCalendar('refetchEvents')
+			            },
+			            error: function(err, response) {
+			                console.log(err, response);
+			            }
+			        })
+			    }
+		    });
 		}
 
 		function fetchEvents(start, end, timezone, callback) {
 			$.get("/get_events", function(data) {
-				console.log(data);
 				events = [];
 				for (var i=0; i<data.objects.length; i++) {
-					var object = data.objects[i].event;
-					events.push({
-						title: object.title,
-						allDay: object.all_day,
-						start: object.start,
-						end: object.end
-					})
+					events.push(data.objects[i].event);
 				}
 				callback(events)
 			})
@@ -80,16 +74,18 @@
 
 		$(document).ready(function() {
 			initCalendar();
-			minoval.get_rule("event", function(err, vr) {
+			minoval.get_endpoint("event", function(err, vr) {
+				if (err) {
+					console.log(err);
+					return;
+				}
+
 				validation_rule = vr;
-
 				form = vr.create_form();
-
 				form.element.append(
 				    $("<button />").text("Submit")
 				)
 				$("#form_container").append(form.element);
-
 				form.on_submit(createEvent);
 			});
 		});
