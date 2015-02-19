@@ -74,7 +74,7 @@
 
 		$(document).ready(function() {
 			initCalendar();
-			minoval.get_endpoint("event", function(err, vr) {
+			minoval.get_rule("event", function(err, vr) {
 				if (err) {
 					console.log(err);
 					return;

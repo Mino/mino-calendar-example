@@ -37,7 +37,7 @@ module.exports = function(mino, minoval, done){
     }, function(err, res){
 		logger.log(JSON.stringify(err,null,4), res);
 
-		minoval.save_endpoint({
+		minoval.save_rule({
 		    "name" : "event",
 		    "mino_type" : {
 		        "name" : "event",
@@ -55,14 +55,18 @@ module.exports = function(mino, minoval, done){
 			}], function(err, res){
 				logger.log(JSON.stringify(err,null,4), res);
 
+				var start = new Date();
+				var end = new Date();
+				end.setDate(end.getDate() + 4);
+
 				mino.save([{
 					"name": "demo_event",
 					"path": "/my_app/events/",
 					"event": {
-						"title": "MinoVal EVENT",
+						"title": "MinoDB Calendar example event",
 						"allDay": true,
-						"start": "2014-12-20",
-						"end": "2014-12-24"
+						"start": start.getFullYear() + "-" + (start.getMonth()+1) + "-" + start.getDate(),
+						"end": end.getFullYear() + "-" + (end.getMonth()+1) + "-" + end.getDate()
 					}
 				}], function(err, res){
 					logger.log(JSON.stringify(err,null,4), res);

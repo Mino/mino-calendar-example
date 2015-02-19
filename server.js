@@ -9,7 +9,8 @@ require('./mino_setup')(function(mino,minoval){
 	.use('/mino/', mino.server())
 	.post("/create_event", function(req, res) {
 	
-		minoval.validate("event", req.body, function(validator) {
+		minoval.validate("event", req.body, function(err, validator) {
+			logger.log(err);
 			var error = validator.end();
 			if (error) {
 				res.json(error);
