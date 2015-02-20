@@ -11,8 +11,8 @@
     "tracer": "*",
     "body-parser": "*",
     "extend": "MarcusLongmuir/extend",
-    "minodb": "*",
-    "minoval": "*"
+    "minodb": "MarcusLongmuir/MinoDB#develop",
+    "minoval": "MarcusLongmuir/MinoVal#master"
   },
   "devDependencies": {
     "gulp-nodemon" : "*",
