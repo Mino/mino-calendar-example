@@ -12,13 +12,14 @@
     "body-parser": "*",
     "extend": "MarcusLongmuir/extend",
     "minodb": "MarcusLongmuir/MinoDB#develop",
-    "minoval": "MarcusLongmuir/MinoVal#master"
+    "minoval": "MarcusLongmuir/MinoVal#master",
+    "bower": "*"
   },
   "devDependencies": {
     "gulp-nodemon" : "*",
     "gulp": "^3.6.1"
   },
   "scripts": {
-    "postinstall": "bower install"
+    "postinstall": "./node_modules/bower/bin/bower install"
   }
 }
