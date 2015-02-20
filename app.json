@@ -1,0 +1,10 @@
+{
+  "name": "MinoDB calendar example",
+  "description": "Lightweight calendar built using MinoDB and fullcalendar",
+  "repository": "https://github.com/bestan/minoval-calendar",
+  "logo": "https://node-js-sample.herokuapp.com/node.svg",
+  "keywords": ["minodb", "fullcalendar", "node", "mongodb", "express"],
+  "addons": [
+    "mongolab:shared-single-small"
+  ]
+}
