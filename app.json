@@ -5,6 +5,6 @@
   "logo": "https://node-js-sample.herokuapp.com/node.svg",
   "keywords": ["minodb", "fullcalendar", "node", "mongodb", "express"],
   "addons": [
-    "mongolab:shared-single-small"
+    "mongolab"
   ]
 }
