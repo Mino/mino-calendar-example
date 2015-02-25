@@ -22,16 +22,14 @@ module.exports = function(mino, minoval, done){
             {
                 "name" : "start",
                 "display_name" : "Start time",
-                "type" : "text",
-                "min_length" : null,
-                "max_length" : null
+                "type" : "date",
+                "format": "yyyy-MM-dd"
             }, 
             {
                 "name" : "end",
                 "display_name" : "End time",
-                "type" : "text",
-                "min_length" : null,
-                "max_length" : null
+                "type" : "date",
+                "format": "yyyy-MM-dd"
             }
         ]
     }, function(err, res){
