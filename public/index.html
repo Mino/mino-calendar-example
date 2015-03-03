@@ -26,13 +26,13 @@
 		var validation_rule;
 		var form;
 
-		function initCalendar() {
+		function init_calendar() {
 			$('#calendar').fullCalendar({
-			    events: fetchEvents
+			    events: fetch_events
 			});
 		}
 
-		function createEvent(event) {
+		function create_event(event) {
 			console.log(validation_rule);
 		    validation_rule.validate(event, function(error) {
 			  	console.log(error);
@@ -61,7 +61,7 @@
 		    });
 		}
 
-		function fetchEvents(start, end, timezone, callback) {
+		function fetch_events(start, end, timezone, callback) {
 			$.get("/get_events", function(data) {
 				events = [];
 				for (var i=0; i<data.objects.length; i++) {
@@ -72,7 +72,7 @@
 		}
 
 		$(document).ready(function() {
-			initCalendar();
+			init_calendar();
 			minoval.get_rule("event", function(err, vr) {
 				if (err) {
 					console.log(err);
@@ -81,11 +81,13 @@
 
 				validation_rule = vr;
 				form = vr.create_form();
-				form.element.append(
-				    $("<button />").text("Submit")
-				)
-				$("#form_container").append(form.element);
-				form.on_submit(createEvent);
+			    form.on_submit(create_event);
+
+				$("#form_container").append(
+					form.element.append(
+						$("<button />").text("Submit")
+					)
+			    );
 			});
 		});
 	</script>
