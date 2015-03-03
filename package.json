@@ -17,7 +17,8 @@
   },
   "devDependencies": {
     "gulp-nodemon" : "*",
-    "gulp": "^3.6.1"
+    "gulp": "^3.6.1",
+    "gulp-util": "^2.2.14"
   },
   "scripts": {
     "postinstall": "./node_modules/bower/bin/bower install"
