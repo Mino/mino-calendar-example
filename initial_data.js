@@ -40,8 +40,8 @@ module.exports = function(mino, minoval, done){
 		    "mino_type" : {
 		        "name" : "event",
 		        "display_name" : "Event",
-		        "type" : "minoval_field",
-		        "minoval_field" : "event"
+		        "type" : "mino_field",
+		        "mino_field" : "event"
 		    }
 		}, function(err, res){
 			logger.log(JSON.stringify(err,null,4), res);
@@ -57,14 +57,21 @@ module.exports = function(mino, minoval, done){
 				var end = new Date();
 				end.setDate(end.getDate() + 4);
 
+				var format_number = function(k) {
+					return k<10? ("0"+k) : ""+k;
+				}
+
+				var event_start = start.getFullYear() + "-" + format_number(start.getMonth()+1) + "-" + format_number(start.getDate());
+				var event_end = end.getFullYear() + "-" + format_number(end.getMonth()+1) + "-" + format_number(end.getDate());
+
 				mino.save([{
 					"name": "demo_event",
 					"path": "/my_app/events/",
 					"event": {
 						"title": "MinoDB Calendar example event",
 						"allDay": true,
-						"start": start.getFullYear() + "-" + (start.getMonth()+1) + "-" + start.getDate(),
-						"end": end.getFullYear() + "-" + (end.getMonth()+1) + "-" + end.getDate()
+						"start": event_start,
+						"end": event_end
 					}
 				}], function(err, res){
 					logger.log(JSON.stringify(err,null,4), res);
