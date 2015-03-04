@@ -19,10 +19,7 @@ module.exports = function(callback){
 		"password": "my_password"
 	}, function(err, res){
 
-		logger.log("CREATED USER");
-
 		mino.add_plugin(minoval, function(){
-			logger.log("FINISHED PLUGINS");
 			require('./initial_data')(mino, minoval, function(){
 				callback(mino,minoval);
 			});

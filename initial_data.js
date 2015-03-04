@@ -33,7 +33,6 @@ module.exports = function(mino, minoval, done){
             }
         ]
     }, function(err, res){
-		logger.log(JSON.stringify(err,null,4), res);
 
 		minoval.save_rule({
 		    "name" : "event",
@@ -44,14 +43,12 @@ module.exports = function(mino, minoval, done){
 		        "mino_field" : "event"
 		    }
 		}, function(err, res){
-			logger.log(JSON.stringify(err,null,4), res);
 
 			mino.save([{
 				"name": "events",
 				"folder": true,
 				"path": "/my_app/"
 			}], function(err, res){
-				logger.log(JSON.stringify(err,null,4), res);
 
 				var start = new Date();
 				var end = new Date();
@@ -74,8 +71,6 @@ module.exports = function(mino, minoval, done){
 						"end": event_end
 					}
 				}], function(err, res){
-					logger.log(JSON.stringify(err,null,4), res);
-
 					if(done) done();
 				});
 			});

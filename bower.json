@@ -5,7 +5,7 @@
     "jquery": "1.11.1",
     "fullcalendar": "*",
     "fieldval": "FieldVal/fieldval-js#develop",
-    "fieldval-ui": "0.3.4",
+    "fieldval-ui": "FieldVal/fieldval-ui#develop",
     "fieldval-rules": "FieldVal/fieldval-rules-js#develop"
   },
   "private": true
