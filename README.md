@@ -12,7 +12,7 @@ Example integrating [MinoDB](https://github.com/MarcusLongmuir/MinoDB/) and [Ful
 * [server.js](server.js) - backend code with all endpoints (**34 lines in total**)
 * [index.html](public/index.html) - frontend code with calendar widget and new event form (**98 lines in total**)
 * [initial_data.js](initial_data.js) - creates initial data such as types, MinoVal rule and first event.
-* [mino_setup.js](mino_setup.js) - sets up Mino with all its dependencies
+* [mino_setup.js](mino_setup.js) - sets up Mino with all its dependencies (**49 lines in total**)
 
 ##Live example
 http://mino-calendar-example.herokuapp.com
