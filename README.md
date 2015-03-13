@@ -22,6 +22,7 @@ Login details:
 npm install
 node server.js
 ```
+You also need [MongoDB](http://www.mongodb.org/) running on ```mongodb://127.0.0.1:27017/mino-example``` (URL can be changed in [mino_setup.js](mino_setup.js)).
 
 ##Things to try
 * Create an event using the form on the [homepage](http://mino-calendar-example.herokuapp.com/).
