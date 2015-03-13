@@ -27,5 +27,5 @@ Login details:
 * [initial_data.js](initial_data.js) - creates initial data such as types, MinoVal rule and first event. All of it can be created using Browser and MinoVal UI.
 * [mino_setup.js](mino_setup.js) - sets up Mino with all its dependencies (**31 lines in total**)
 
-##Heroku 
+##Deploy your own on Heroku 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/bestan/mino-calendar-example)
