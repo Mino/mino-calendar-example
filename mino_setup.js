@@ -5,22 +5,22 @@ var StaticSignal = MinoDB.StaticSignal;
 var request = require('request');
 
 module.exports = function(callback){
-
+	var username = process.env.MINO_USERNAME || "my_app";
 	var minoval = new MinoVal({
-		user: "my_app"
+		user: username
 	});
 
 	var mino = new MinoDB({
 	    ui: true,
 	    db_address: process.env.MONGOLAB_URI || 'mongodb://127.0.0.1:27017/mino-example'
-	}, "my_app")
+	}, username)
 
 	mino.create_user({
-		"username": "my_app",
-		"email": "marcus+test@minocloud.com",
-		"password": "my_password"
+		"username": username,
+		"email": "email@example.com",
+		"password": process.env.MINO_PASSWORD || "my_password"
 	}, function(err, res){
-
+		logger.log(err, res);
 		mino.add_plugin(minoval, function(){
 			require('./initial_data')(mino, minoval, function(){
 				callback(mino,minoval);

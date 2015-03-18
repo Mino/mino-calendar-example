@@ -1,6 +1,7 @@
 var logger = require('tracer').console();
 var express = require('express');
 
+var username = process.env.MINO_USERNAME || "my_app";
 require('./mino_setup')(function(mino,minoval){
 	express()
 	.use(require('errorhandler')())
@@ -16,7 +17,7 @@ require('./mino_setup')(function(mino,minoval){
 
 			var objects = [{
                 name: req.body.title,
-                path: "/my_app/events/",
+                path: "/" + username + "/events/",
                 event: req.body
             }]
 
@@ -26,7 +27,7 @@ require('./mino_setup')(function(mino,minoval){
 		});
 	})
 	.get("/get_events", function(req, res) {
-		mino.search(["/my_app/events/"], function(req, response) {
+		mino.search(["/" + username + "/events/"], function(req, response) {
 			res.json(response);
 		});
 	})

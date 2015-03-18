@@ -1,6 +1,7 @@
 var logger = require('tracer').console();
 
 module.exports = function(mino, minoval, done){
+	var username = process.env.MINO_USERNAME || "my_app";
 
 	mino.save_type({
         "name" : "event",
@@ -47,7 +48,7 @@ module.exports = function(mino, minoval, done){
 			mino.save([{
 				"name": "events",
 				"folder": true,
-				"path": "/my_app/"
+				"path": "/" + username + "/"
 			}], function(err, res){
 
 				var start = new Date();
@@ -63,7 +64,7 @@ module.exports = function(mino, minoval, done){
 
 				mino.save([{
 					"name": "demo_event",
-					"path": "/my_app/events/",
+					"path": "/" + username + "/events/",
 					"event": {
 						"title": "MinoDB Calendar example event",
 						"allDay": true,
