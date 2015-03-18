@@ -31,7 +31,7 @@ You also need [MongoDB](http://www.mongodb.org/) running on ```mongodb://127.0.0
 * Navigate to ```event``` in [Types](http://mino-calendar-example.herokuapp.com/mino/browser/event). Click Edit and add an additional field to the Type (green button at the bottom). Save the Type and check the home page - the form will have new field immediately.
 
 ##Code to read
-* [server.js](server.js) - backend code with all endpoints (**34 lines in total**)
+* [server.js](server.js) - backend code with all endpoints (**35 lines in total**)
 * [index.html](public/index.html) - frontend code with calendar widget and new event form (**98 lines in total**)
 * [initial_data.js](initial_data.js) - creates initial data such as types, MinoVal rule and first event. All of it can be created using Browser and MinoVal UI.
 * [mino_setup.js](mino_setup.js) - sets up Mino with all its dependencies (**31 lines in total**)
