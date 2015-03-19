@@ -11,7 +11,7 @@
     "tracer": "*",
     "body-parser": "*",
     "extend": "MarcusLongmuir/extend",
-    "minodb": "MarcusLongmuir/MinoDB#develop",
+    "minodb": "Mino/MinoDB#develop",
     "minoval": "MarcusLongmuir/MinoVal#master",
     "bower": "*"
   },
