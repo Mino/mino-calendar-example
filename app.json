@@ -1,7 +1,7 @@
 {
   "name": "MinoDB calendar example",
   "description": "Lightweight calendar built using MinoDB and fullcalendar",
-  "repository": "https://github.com/bestan/mino-calendar-example",
+  "repository": "https://github.com/Mino/mino-calendar-example",
   "logo": "https://node-js-sample.herokuapp.com/node.svg",
   "keywords": ["minodb", "fullcalendar", "node", "mongodb", "express"],
   "env": {
