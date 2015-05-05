@@ -19,11 +19,11 @@ require('./mino_setup')(function(mino,minoval){
                 name: req.body.title,
                 path: "/" + username + "/events/",
                 event: req.body
-            }]
+            }];
 
 			mino.save(objects, function(err,response){
 			    res.json(response);
-			})
+			});
 		});
 	})
 	.get("/get_events", function(req, res) {

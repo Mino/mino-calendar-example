@@ -37,11 +37,11 @@ module.exports = function(mino, minoval, done){
 
 		minoval.save_rule({
 		    "name" : "event",
-		    "mino_type" : {
+		    "minodb_type" : {
 		        "name" : "event",
 		        "display_name" : "Event",
-		        "type" : "mino_field",
-		        "mino_field" : "event"
+		        "type" : "minodb_field",
+		        "minodb_field" : "event"
 		    }
 		}, function(err, res){
 
@@ -57,7 +57,7 @@ module.exports = function(mino, minoval, done){
 
 				var format_number = function(k) {
 					return k<10? ("0"+k) : ""+k;
-				}
+				};
 
 				var event_start = start.getFullYear() + "-" + format_number(start.getMonth()+1) + "-" + format_number(start.getDate());
 				var event_end = end.getFullYear() + "-" + format_number(end.getMonth()+1) + "-" + format_number(end.getDate());
@@ -77,4 +77,4 @@ module.exports = function(mino, minoval, done){
 			});
 		});
 	});
-}
+};

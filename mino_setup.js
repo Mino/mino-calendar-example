@@ -12,8 +12,8 @@ module.exports = function(callback){
 
 	var mino = new MinoDB({
 	    ui: true,
-	    db_address: process.env.MONGOLAB_URI || 'mongodb://127.0.0.1:27017/mino-example'
-	}, username)
+	    db_address: process.env.MONGOLAB_URI || 'mongodb://127.0.0.1:27017/minodb_tests'
+	}, username);
 
 	mino.create_user({
 		"username": username,
